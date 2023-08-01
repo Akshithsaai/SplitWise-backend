@@ -11,7 +11,7 @@ const friendRoutes = require('./routes/Friend');
 const app = express();
 app.use(express.json());
 app.use(cors());
-const port = process.env.port || 8000;
+const PORT = process.env.port || 8000;
 
 app.use((error, req, res, next) => {
     res.status(error.status || 500);
@@ -27,10 +27,11 @@ app.use('/user', userRoutes);
 app.use('/group', groupRoutes);
 app.use('/friends',friendRoutes);
 
-app.listen(port,()=>{ 
-    console.log(`your server is listening at ${port}`);
+mongoose.connect(process.env.DB_ROOT, {dbName: "splitwise"})
+.then(() => console.log("DB connected successfully"));
+
+app.listen(PORT,()=>{ 
+    console.log(`your server is listening at ${PORT}`);
 })
 
 
-mongoose.connect(process.env.DB_ROOT, {dbName: "splitwise"})
-.then(() => console.log("DB connected successfully"));
