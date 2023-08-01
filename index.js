@@ -11,7 +11,7 @@ const friendRoutes = require('./routes/Friend');
 const app = express();
 app.use(express.json());
 app.use(cors());
-const port = 8000;
+const port = process.env.port || 8000;
 
 app.use((error, req, res, next) => {
     res.status(error.status || 500);
