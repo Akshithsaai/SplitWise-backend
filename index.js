@@ -15,9 +15,6 @@ app.use((error, req, res, next) => {
     }
   });
 });
-app.get('/',(req,res)=>{
-    res.send("Hello world")
-})
 const PORT = process.env.port || 8000;
 
 mongoose.connect(process.env.DB_ROOT, {dbName: "splitwise"})
